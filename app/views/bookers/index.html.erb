@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>a</title>
+</head>
+<body>
+
+<h1>Books</h1>
+      <table class="table table-condensed">
+        <tr>
+          <th>Title</th>
+          <th>Body</th>
+        </tr>
+      </table>
+    <% @books.each do |book| %>
+      <table class="table">
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.body %></td>
+        </tr>
+      </table>
+      <%= link_to "Show", show_path(book.id)%>
+      <%= link_to "Edit", edit_path(book.id)%>
+      <%= link_to "削除", destroy_path(book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <% end %>
+
+<h1>New book</h1>
+                        <!--create-->
+    <%= form_for(@book,url:'/bookers') do |f| %>
+
+       <p>Title</p>
+       <%= f.text_field :title %>
+
+       <p>Body</p>
+       <%= f.text_area :body %>
+
+       <p></p>
+       <%= f.submit 'Create Book' %>
+
+    <% end %>
+</body>
+</html>
